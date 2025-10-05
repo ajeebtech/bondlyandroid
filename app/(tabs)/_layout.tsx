@@ -24,7 +24,7 @@ export default function TabLayout() {
             <IconSymbol 
               size={24} 
               name={focused ? "house.fill" : "house"} 
-              color={focused ? "#1DA1F2" : color} 
+              color={focused ? "#f472b6" : color} 
             />
           ),
         }}
@@ -37,7 +37,7 @@ export default function TabLayout() {
             <IconSymbol 
               size={24} 
               name={focused ? "camera.fill" : "camera"} 
-              color={focused ? "#1DA1F2" : color} 
+              color={focused ? "#f472b6" : color} 
             />
           ),
         }}
@@ -50,7 +50,7 @@ export default function TabLayout() {
             <IconSymbol 
               size={24} 
               name={focused ? "photo.fill" : "photo"} 
-              color={focused ? "#1DA1F2" : color} 
+              color={focused ? "#f472b6" : color} 
             />
           ),
         }}
@@ -63,7 +63,7 @@ export default function TabLayout() {
             <IconSymbol 
               size={24} 
               name={focused ? "heart.fill" : "heart"} 
-              color={focused ? "#1DA1F2" : color} 
+              color={focused ? "#f472b6" : color} 
             />
           ),
         }}

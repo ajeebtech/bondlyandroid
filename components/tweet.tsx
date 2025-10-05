@@ -121,7 +121,7 @@ export default function Tweet({
           <View style={styles.nameRow}>
             <ThemedText style={styles.userName}>{user.name}</ThemedText>
             {user.verified && (
-              <IconSymbol name="checkmark.seal.fill" size={16} color="#1DA1F2" />
+              <IconSymbol name="checkmark.seal.fill" size={16} color="#f472b6" />
             )}
             <ThemedText style={styles.userHandle}>@{user.handle}</ThemedText>
             <ThemedText style={styles.timestamp}>· {timestamp}</ThemedText>

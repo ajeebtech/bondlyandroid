@@ -113,7 +113,7 @@ export default function MapScreen() {
         ]}
       >
         <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
-          <IconSymbol name="chevron.left" size={24} color="#1DA1F2" />
+          <IconSymbol name="chevron.left" size={24} color="#f472b6" />
         </TouchableOpacity>
         <ThemedText style={styles.title}>My Location</ThemedText>
         <Animated.View style={{ transform: [{ scale: centerButtonScale }] }}>
@@ -159,7 +159,7 @@ export default function MapScreen() {
           ]}
         >
           <View style={styles.locationHeader}>
-            <IconSymbol name="location.fill" size={16} color="#1DA1F2" />
+            <IconSymbol name="location.fill" size={16} color="#f472b6" />
             <ThemedText style={styles.locationTitle}>Current Location</ThemedText>
           </View>
           <ThemedText style={styles.locationText}>
@@ -225,13 +225,13 @@ const styles = StyleSheet.create({
     letterSpacing: -0.5,
   },
   centerButton: {
-    backgroundColor: '#1DA1F2',
+    backgroundColor: '#f472b6',
     width: 44,
     height: 44,
     borderRadius: 22,
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: '#1DA1F2',
+    shadowColor: '#f472b6',
     shadowOffset: {
       width: 0,
       height: 4,
@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
   locationTitle: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1DA1F2',
+    color: '#f472b6',
     marginLeft: 6,
   },
   locationText: {

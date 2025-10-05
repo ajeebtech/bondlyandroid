@@ -226,7 +226,7 @@ export default function HomeScreen() {
         </View>
         
         <TouchableOpacity style={styles.headerRight}>
-          <IconSymbol name="sparkles" size={24} color="#1DA1F2" />
+          <IconSymbol name="sparkles" size={24} color="#f472b6" />
         </TouchableOpacity>
       </Animated.View>
 
@@ -355,7 +355,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: '#1DA1F2',
+    backgroundColor: '#f472b6',
     elevation: 8,
     shadowColor: '#000',
     shadowOffset: {

@@ -100,7 +100,7 @@ export default function PlanDateScreen() {
             style={styles.mapButton}
             onPress={() => router.push('/map')}
           >
-            <IconSymbol name="map.fill" size={20} color="#1DA1F2" />
+            <IconSymbol name="map.fill" size={20} color="#f472b6" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.createButton} onPress={openPlanModal}>
             <IconSymbol name="plus" size={20} color="#FFFFFF" />
@@ -119,20 +119,18 @@ export default function PlanDateScreen() {
             }
           ]}
         >
-          <ThemedText style={styles.sectionTitle}>Quick Date Ideas</ThemedText>
+          <ThemedText style={styles.sectionTitle}>Planned Dates</ThemedText>
           <ThemedText style={styles.sectionDescription}>
-            Choose from our curated list of romantic date ideas
+            Your upcoming romantic dates
           </ThemedText>
         </Animated.View>
 
-        <View style={styles.dateIdeasGrid}>
+        <View style={styles.plannedDatesContainer}>
           {[
-            { id: '1', title: 'Coffee & Walk', icon: 'cup.and.saucer.fill', color: '#8B4513' },
-            { id: '2', title: 'Dinner Date', icon: 'fork.knife', color: '#FF6B6B' },
-            { id: '3', title: 'Movie Night', icon: 'tv.fill', color: '#4ECDC4' },
-            { id: '4', title: 'Picnic in Park', icon: 'leaf.fill', color: '#45B7D1' },
-            { id: '5', title: 'Museum Visit', icon: 'building.columns.fill', color: '#96CEB4' },
-            { id: '6', title: 'Cooking Together', icon: 'chef.hat.fill', color: '#FFEAA7' },
+            { id: '1', place: 'Central Park', date: 'Dec 15, 2024' },
+            { id: '2', place: 'Brooklyn Bridge', date: 'Dec 22, 2024' },
+            { id: '3', place: 'Times Square', date: 'Dec 28, 2024' },
+            { id: '4', place: 'High Line Park', date: 'Jan 5, 2025' },
           ].map((item, index) => (
             <Animated.View
               key={item.id}
@@ -146,28 +144,13 @@ export default function PlanDateScreen() {
                 }
               ]}
             >
-              <TouchableOpacity style={styles.dateIdeaCard}>
-                <View style={[styles.iconContainer, { backgroundColor: item.color }]}>
-                  <IconSymbol name={item.icon as any} size={24} color="#FFFFFF" />
-                </View>
-                <ThemedText style={styles.dateIdeaTitle}>{item.title}</ThemedText>
+              <TouchableOpacity style={styles.plannedDateBar}>
+                <ThemedText style={styles.plannedDatePlace}>{item.place}</ThemedText>
+                <ThemedText style={styles.plannedDateText}>{item.date}</ThemedText>
               </TouchableOpacity>
             </Animated.View>
           ))}
         </View>
-
-        <Animated.View
-          style={{
-            opacity: fadeAnim,
-            transform: [{ translateY: slideAnim }]
-          }}
-        >
-          <TouchableOpacity style={styles.customDateCard} onPress={openPlanModal}>
-            <IconSymbol name="heart.fill" size={24} color="#E0245E" />
-            <ThemedText style={styles.customDateText}>Plan Custom Date</ThemedText>
-            <IconSymbol name="chevron.right" size={16} color="#657786" />
-          </TouchableOpacity>
-        </Animated.View>
       </ScrollView>
 
       {/* Plan Your Date Modal */}
@@ -234,7 +217,7 @@ export default function PlanDateScreen() {
                 <View style={styles.waypointsHeader}>
                   <ThemedText style={styles.inputLabel}>Waypoints</ThemedText>
                   <TouchableOpacity style={styles.addStopButton} onPress={addWaypoint}>
-                    <IconSymbol name="plus" size={16} color="#1DA1F2" />
+                    <IconSymbol name="plus" size={16} color="#f472b6" />
                     <ThemedText style={styles.addStopText}>Add Stop</ThemedText>
                   </TouchableOpacity>
                 </View>
@@ -399,78 +382,38 @@ const styles = StyleSheet.create({
     color: '#657786',
     lineHeight: 22,
   },
-  dateIdeasGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    marginBottom: 32,
+  plannedDatesContainer: {
+    paddingHorizontal: 20,
+    marginBottom: 24,
   },
-  dateIdeaCard: {
-    width: '48%',
+  plannedDateBar: {
     backgroundColor: '#FFFFFF',
-    borderRadius: 16,
-    padding: 20,
-    marginBottom: 16,
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#E1E8ED',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-    elevation: 3,
-  },
-  iconContainer: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    justifyContent: 'center',
-    alignItems: 'center',
+    borderRadius: 12,
+    padding: 16,
     marginBottom: 12,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 4,
-  },
-  dateIdeaTitle: {
-    fontSize: 15,
-    fontWeight: '600',
-    color: '#14171A',
-    textAlign: 'center',
-    letterSpacing: -0.2,
-  },
-  customDateCard: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 16,
-    padding: 20,
-    marginBottom: 32,
     borderWidth: 1,
     borderColor: '#E1E8ED',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 1,
     },
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-    elevation: 3,
+    shadowOpacity: 0.05,
+    shadowRadius: 4,
+    elevation: 2,
   },
-  customDateText: {
-    flex: 1,
+  plannedDatePlace: {
     fontSize: 16,
     fontWeight: '600',
     color: '#14171A',
-    marginLeft: 12,
+    marginBottom: 4,
     letterSpacing: -0.2,
+  },
+  plannedDateText: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: '#657786',
+    letterSpacing: -0.1,
   },
   // Modal Styles
   modalContainer: {
@@ -537,7 +480,7 @@ const styles = StyleSheet.create({
   addStopText: {
     fontSize: 12,
     fontWeight: '600',
-    color: '#1DA1F2',
+    color: '#f472b6',
     marginLeft: 4,
   },
   waypointItem: {

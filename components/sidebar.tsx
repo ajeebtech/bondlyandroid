@@ -63,7 +63,7 @@ export default function Sidebar({ onClose }: SidebarProps) {
         {/* Header */}
         <View style={styles.header}>
           <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-            <IconSymbol name="xmark" size={24} color="#1DA1F2" />
+            <IconSymbol name="xmark" size={24} color="#f472b6" />
           </TouchableOpacity>
         </View>
 
@@ -98,7 +98,7 @@ export default function Sidebar({ onClose }: SidebarProps) {
               <IconSymbol 
                 name={item.icon as any} 
                 size={24} 
-                color={item.active ? '#1DA1F2' : '#657786'} 
+                color={item.active ? '#f472b6' : '#657786'} 
               />
               <ThemedText style={[
                 styles.menuLabel,
@@ -197,11 +197,11 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
   activeMenuLabel: {
-    color: '#1DA1F2',
+    color: '#f472b6',
     fontWeight: 'bold',
   },
   tweetButton: {
-    backgroundColor: '#1DA1F2',
+    backgroundColor: '#f472b6',
     borderRadius: 25,
     paddingVertical: 12,
     paddingHorizontal: 24,

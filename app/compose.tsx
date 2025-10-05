@@ -168,17 +168,17 @@ export default function ComposeScreen() {
           {/* Media Button Row */}
           <View style={styles.mediaButtonRow}>
             <TouchableOpacity style={styles.mediaButtonLarge} onPress={addMedia}>
-              <IconSymbol name="photo.fill" size={24} color="#1DA1F2" />
+              <IconSymbol name="photo.fill" size={24} color="#f472b6" />
               <ThemedText style={styles.mediaButtonText}>Add Media</ThemedText>
             </TouchableOpacity>
             
             <TouchableOpacity style={styles.mediaButtonLarge} onPress={() => console.log('Add GIF')}>
-              <IconSymbol name="gift.fill" size={24} color="#1DA1F2" />
+              <IconSymbol name="gift.fill" size={24} color="#f472b6" />
               <ThemedText style={styles.mediaButtonText}>GIF</ThemedText>
             </TouchableOpacity>
             
             <TouchableOpacity style={styles.mediaButtonLarge} onPress={() => console.log('Add Poll')}>
-              <IconSymbol name="chart.bar.fill" size={24} color="#1DA1F2" />
+              <IconSymbol name="chart.bar.fill" size={24} color="#f472b6" />
               <ThemedText style={styles.mediaButtonText}>Poll</ThemedText>
             </TouchableOpacity>
           </View>
@@ -211,13 +211,13 @@ export default function ComposeScreen() {
                       style={styles.removeImageButton}
                       onPress={() => removeImage(index)}
                     >
-                      <IconSymbol name="xmark.circle.fill" size={20} color="#1DA1F2" />
+                      <IconSymbol name="xmark.circle.fill" size={20} color="#f472b6" />
                     </TouchableOpacity>
                   </Animated.View>
                 ))}
                 {selectedImages.length < 4 && (
                   <TouchableOpacity style={styles.addImageButton} onPress={addImage}>
-                    <IconSymbol name="camera.fill" size={24} color="#1DA1F2" />
+                    <IconSymbol name="camera.fill" size={24} color="#f472b6" />
                   </TouchableOpacity>
                 )}
               </ScrollView>
@@ -227,19 +227,19 @@ export default function ComposeScreen() {
           {/* Action Bar */}
           <View style={styles.actionBar}>
             <TouchableOpacity style={styles.actionButton} onPress={addMedia}>
-              <IconSymbol name="photo.fill" size={20} color="#1DA1F2" />
+              <IconSymbol name="photo.fill" size={20} color="#f472b6" />
             </TouchableOpacity>
             
             <TouchableOpacity style={styles.actionButton} onPress={() => console.log('Add GIF')}>
-              <IconSymbol name="gift.fill" size={20} color="#1DA1F2" />
+              <IconSymbol name="gift.fill" size={20} color="#f472b6" />
             </TouchableOpacity>
             
             <TouchableOpacity style={styles.actionButton} onPress={() => console.log('Add Poll')}>
-              <IconSymbol name="chart.bar.fill" size={20} color="#1DA1F2" />
+              <IconSymbol name="chart.bar.fill" size={20} color="#f472b6" />
             </TouchableOpacity>
             
             <TouchableOpacity style={styles.actionButton} onPress={() => console.log('Add Location')}>
-              <IconSymbol name="location.fill" size={20} color="#1DA1F2" />
+              <IconSymbol name="location.fill" size={20} color="#f472b6" />
             </TouchableOpacity>
             
             <View style={styles.characterCount}>
@@ -278,11 +278,11 @@ const styles = StyleSheet.create({
   },
   cancelText: {
     fontSize: 16,
-    color: '#1DA1F2',
+    color: '#f472b6',
     fontWeight: '600',
   },
   tweetButton: {
-    backgroundColor: '#1DA1F2',
+    backgroundColor: '#f472b6',
     paddingVertical: 8,
     paddingHorizontal: 16,
     borderRadius: 20,
@@ -331,7 +331,7 @@ const styles = StyleSheet.create({
     top: 10,
     padding: 12,
     borderRadius: 25,
-    backgroundColor: '#1DA1F2',
+    backgroundColor: '#f472b6',
     elevation: 2,
     shadowColor: '#000',
     shadowOffset: {
@@ -361,7 +361,7 @@ const styles = StyleSheet.create({
   mediaButtonText: {
     marginLeft: 8,
     fontSize: 16,
-    color: '#1DA1F2',
+    color: '#f472b6',
     fontWeight: '600',
   },
   imagesContainer: {
@@ -389,7 +389,7 @@ const styles = StyleSheet.create({
     height: 80,
     borderRadius: 8,
     borderWidth: 2,
-    borderColor: '#1DA1F2',
+    borderColor: '#f472b6',
     borderStyle: 'dashed',
     justifyContent: 'center',
     alignItems: 'center',
