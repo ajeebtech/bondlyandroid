@@ -5,7 +5,7 @@ import Tweet from '@/components/tweet';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Animated, FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
 
 export default function HomeScreen() {
@@ -17,6 +17,9 @@ export default function HomeScreen() {
   const sidebarTranslateX = useRef(new Animated.Value(300)).current;
   const sidebarOpacity = useRef(new Animated.Value(0)).current;
   const backdropOpacity = useRef(new Animated.Value(0)).current;
+  const headerTranslateY = useRef(new Animated.Value(-100)).current;
+  const tweetOpacity = useRef(new Animated.Value(0)).current;
+  const tweetTranslateY = useRef(new Animated.Value(30)).current;
 
   const tweets = [
     {
@@ -82,6 +85,29 @@ export default function HomeScreen() {
       isRetweeted: true,
     },
   ];
+
+  // Entrance animations
+  useEffect(() => {
+    Animated.parallel([
+      Animated.timing(headerTranslateY, {
+        toValue: 0,
+        duration: 600,
+        useNativeDriver: true,
+      }),
+      Animated.timing(tweetOpacity, {
+        toValue: 1,
+        duration: 800,
+        delay: 200,
+        useNativeDriver: true,
+      }),
+      Animated.timing(tweetTranslateY, {
+        toValue: 0,
+        duration: 800,
+        delay: 200,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, []);
 
   // Animation functions
   const openSidebar = () => {
@@ -176,8 +202,15 @@ export default function HomeScreen() {
 
   return (
     <ThemedView style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
+      {/* Animated Header */}
+      <Animated.View 
+        style={[
+          styles.header,
+          {
+            transform: [{ translateY: headerTranslateY }]
+          }
+        ]}
+      >
         <TouchableOpacity 
           onPress={openSidebar}
           style={styles.avatarButton}
@@ -195,16 +228,25 @@ export default function HomeScreen() {
         <TouchableOpacity style={styles.headerRight}>
           <IconSymbol name="sparkles" size={24} color="#1DA1F2" />
         </TouchableOpacity>
-      </View>
+      </Animated.View>
 
-      {/* Tweet Feed */}
-      <FlatList
-        data={tweets}
-        renderItem={renderTweet}
-        keyExtractor={(item) => item.id}
-        style={styles.feed}
-        showsVerticalScrollIndicator={false}
-      />
+      {/* Animated Tweet Feed */}
+      <Animated.View 
+        style={[
+          styles.feed,
+          {
+            opacity: tweetOpacity,
+            transform: [{ translateY: tweetTranslateY }]
+          }
+        ]}
+      >
+        <FlatList
+          data={tweets}
+          renderItem={renderTweet}
+          keyExtractor={(item) => item.id}
+          showsVerticalScrollIndicator={false}
+        />
+      </Animated.View>
 
       {/* Floating Action Button */}
       <Animated.View
@@ -265,31 +307,43 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 15,
-    paddingTop: 50,
-    paddingBottom: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#E1E8ED',
+    paddingHorizontal: 20,
+    paddingTop: 60,
+    paddingBottom: 20,
+    backgroundColor: '#FFFFFF',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 5,
   },
   avatarButton: {
-    marginRight: 15,
+    marginRight: 16,
   },
   headerAvatar: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    borderWidth: 2,
+    borderColor: '#E1E8ED',
   },
   headerCenter: {
     flex: 1,
     alignItems: 'center',
   },
   headerTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontSize: 20,
+    fontWeight: '700',
     color: '#14171A',
+    letterSpacing: -0.5,
   },
   headerRight: {
-    padding: 4,
+    padding: 8,
+    borderRadius: 20,
+    backgroundColor: '#F7F9FA',
   },
   feed: {
     flex: 1,
