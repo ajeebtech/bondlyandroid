@@ -14,7 +14,7 @@ export default function HomeScreen() {
   // Animation values
   const fabScale = useRef(new Animated.Value(1)).current;
   const fabRotation = useRef(new Animated.Value(0)).current;
-  const sidebarTranslateX = useRef(new Animated.Value(300)).current;
+  const sidebarTranslateY = useRef(new Animated.Value(-450)).current;
   const sidebarOpacity = useRef(new Animated.Value(0)).current;
   const backdropOpacity = useRef(new Animated.Value(0)).current;
   const headerTranslateY = useRef(new Animated.Value(-100)).current;
@@ -113,7 +113,7 @@ export default function HomeScreen() {
   const openSidebar = () => {
     setSidebarVisible(true);
     Animated.parallel([
-      Animated.timing(sidebarTranslateX, {
+      Animated.timing(sidebarTranslateY, {
         toValue: 0,
         duration: 300,
         useNativeDriver: true,
@@ -133,8 +133,8 @@ export default function HomeScreen() {
 
   const closeSidebar = () => {
     Animated.parallel([
-      Animated.timing(sidebarTranslateX, {
-        toValue: 300,
+      Animated.timing(sidebarTranslateY, {
+        toValue: -450,
         duration: 250,
         useNativeDriver: true,
       }),
@@ -283,7 +283,7 @@ export default function HomeScreen() {
               styles.sidebarContainer,
               {
                 opacity: sidebarOpacity,
-                transform: [{ translateX: sidebarTranslateX }]
+                transform: [{ translateY: sidebarTranslateY }]
               }
             ]}
           >
@@ -378,11 +378,12 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
   sidebarContainer: {
-    width: 300,
-    height: '100%',
+    width: '100%',
+    height: 450,
   },
   sidebarBackdrop: {
     flex: 1,

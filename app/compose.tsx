@@ -1,4 +1,3 @@
-import { ThemedText } from '@/components/themed-text';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
@@ -11,10 +10,9 @@ import {
     Platform,
     ScrollView,
     StyleSheet,
-    TextInput,
-    TouchableOpacity,
-    View
+    TouchableOpacity
 } from 'react-native';
+import { Button, Text, TextArea, XStack, YStack } from 'tamagui';
 
 const { width } = Dimensions.get('window');
 
@@ -118,70 +116,133 @@ export default function ComposeScreen() {
         ]}
       >
         {/* Header */}
-        <View style={styles.header}>
-          <TouchableOpacity onPress={handleCancel} style={styles.cancelButton}>
-            <ThemedText style={styles.cancelText}>Cancel</ThemedText>
-          </TouchableOpacity>
-          
-          <TouchableOpacity 
-            onPress={handleTweet}
-            style={[
-              styles.tweetButton,
-              !isTweetButtonEnabled && styles.tweetButtonDisabled
-            ]}
-            disabled={!isTweetButtonEnabled}
+        <XStack justifyContent="space-between" alignItems="center" paddingHorizontal="$4" paddingTop="$12" paddingBottom="$4" borderBottomWidth={1} borderBottomColor="$borderColor">
+          <Button 
+            variant="outlined" 
+            size="$3" 
+            onPress={handleCancel}
+            backgroundColor="transparent"
+            borderColor="$pink10"
           >
-            <ThemedText style={[
-              styles.tweetButtonText,
-              !isTweetButtonEnabled && styles.tweetButtonTextDisabled
-            ]}>
-              Tweet
-            </ThemedText>
-          </TouchableOpacity>
-        </View>
+            <Text color="$pink10" fontWeight="600">Cancel</Text>
+          </Button>
+          
+          <Button 
+            onPress={handleTweet}
+            backgroundColor={isTweetButtonEnabled ? "$pink10" : "$gray8"}
+            disabled={!isTweetButtonEnabled}
+            size="$3"
+            borderRadius="$10"
+            pressStyle={{ scale: 0.95 }}
+            animation="bouncy"
+          >
+            <Text color="white" fontWeight="bold">Tweet</Text>
+          </Button>
+        </XStack>
 
-        <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+        <YStack flex={1} paddingHorizontal="$4" space="$4">
           {/* User Avatar and Input */}
-          <View style={styles.inputContainer}>
+          <XStack paddingTop="$4" alignItems="flex-start" space="$3">
             <Image 
               source={{ uri: 'https://picsum.photos/48/48?random=6' }} 
               style={styles.avatar} 
             />
-            <View style={styles.inputWrapper}>
-              <TextInput
-                style={styles.textInput}
+            <YStack flex={1} position="relative">
+              <TextArea
                 placeholder="What's happening?"
-                placeholderTextColor="#657786"
                 value={tweetText}
                 onChangeText={setTweetText}
-                multiline
-                maxLength={280}
+                size="$4"
+                minHeight={120}
+                maxHeight={200}
+                backgroundColor="transparent"
+                borderWidth={0}
+                focusStyle={{
+                  borderWidth: 0,
+                  outlineWidth: 0,
+                  backgroundColor: "$gray2",
+                }}
                 onFocus={() => setIsKeyboardVisible(true)}
                 onBlur={() => setIsKeyboardVisible(false)}
               />
-              <TouchableOpacity style={styles.mediaButton} onPress={addMedia}>
+              
+              {/* Character Counter */}
+              <XStack position="absolute" bottom="$2" right="$2" backgroundColor="$background" paddingHorizontal="$2" paddingVertical="$1" borderRadius="$2">
+                <Text 
+                  fontSize="$2" 
+                  color={tweetText.length > 260 ? "$red10" : tweetText.length > 240 ? "$orange10" : "$color9"}
+                  fontWeight={tweetText.length > 260 ? "600" : "400"}
+                >
+                  {280 - tweetText.length}
+                </Text>
+              </XStack>
+              
+              <Button
+                position="absolute"
+                right="$3"
+                top="$3"
+                size="$3"
+                borderRadius="$12"
+                backgroundColor="$pink10"
+                pressStyle={{ scale: 0.9 }}
+                animation="bouncy"
+                onPress={addMedia}
+              >
                 <IconSymbol name="photo.fill" size={20} color="#FFFFFF" />
-              </TouchableOpacity>
-            </View>
-          </View>
+              </Button>
+            </YStack>
+          </XStack>
 
           {/* Media Button Row */}
-          <View style={styles.mediaButtonRow}>
-            <TouchableOpacity style={styles.mediaButtonLarge} onPress={addMedia}>
-              <IconSymbol name="photo.fill" size={24} color="#f472b6" />
-              <ThemedText style={styles.mediaButtonText}>Add Media</ThemedText>
-            </TouchableOpacity>
+          <XStack justifyContent="space-around" paddingVertical="$4" borderBottomWidth={1} borderBottomColor="$borderColor" space="$3">
+            <Button
+              variant="outlined"
+              size="$3"
+              backgroundColor="$gray2"
+              borderColor="$borderColor"
+              borderRadius="$12"
+              pressStyle={{ scale: 0.95 }}
+              animation="bouncy"
+              onPress={addMedia}
+            >
+              <XStack alignItems="center" space="$2">
+                <IconSymbol name="photo.fill" size={24} color="#f472b6" />
+                <Text color="$pink10" fontWeight="600">Add Media</Text>
+              </XStack>
+            </Button>
             
-            <TouchableOpacity style={styles.mediaButtonLarge} onPress={() => console.log('Add GIF')}>
-              <IconSymbol name="gift.fill" size={24} color="#f472b6" />
-              <ThemedText style={styles.mediaButtonText}>GIF</ThemedText>
-            </TouchableOpacity>
+            <Button
+              variant="outlined"
+              size="$3"
+              backgroundColor="$gray2"
+              borderColor="$borderColor"
+              borderRadius="$12"
+              pressStyle={{ scale: 0.95 }}
+              animation="bouncy"
+              onPress={() => console.log('Add GIF')}
+            >
+              <XStack alignItems="center" space="$2">
+                <IconSymbol name="gift.fill" size={24} color="#f472b6" />
+                <Text color="$pink10" fontWeight="600">GIF</Text>
+              </XStack>
+            </Button>
             
-            <TouchableOpacity style={styles.mediaButtonLarge} onPress={() => console.log('Add Poll')}>
-              <IconSymbol name="chart.bar.fill" size={24} color="#f472b6" />
-              <ThemedText style={styles.mediaButtonText}>Poll</ThemedText>
-            </TouchableOpacity>
-          </View>
+            <Button
+              variant="outlined"
+              size="$3"
+              backgroundColor="$gray2"
+              borderColor="$borderColor"
+              borderRadius="$12"
+              pressStyle={{ scale: 0.95 }}
+              animation="bouncy"
+              onPress={() => console.log('Add Poll')}
+            >
+              <XStack alignItems="center" space="$2">
+                <IconSymbol name="chart.bar.fill" size={24} color="#f472b6" />
+                <Text color="$pink10" fontWeight="600">Poll</Text>
+              </XStack>
+            </Button>
+          </XStack>
 
           {/* Selected Images */}
           {selectedImages.length > 0 && (
@@ -225,33 +286,52 @@ export default function ComposeScreen() {
           )}
 
           {/* Action Bar */}
-          <View style={styles.actionBar}>
-            <TouchableOpacity style={styles.actionButton} onPress={addMedia}>
+          <XStack alignItems="center" paddingVertical="$4" borderTopWidth={1} borderTopColor="$borderColor" space="$3">
+            <Button
+              size="$3"
+              borderRadius="$10"
+              backgroundColor="$gray2"
+              pressStyle={{ scale: 0.9 }}
+              animation="bouncy"
+              onPress={addMedia}
+            >
               <IconSymbol name="photo.fill" size={20} color="#f472b6" />
-            </TouchableOpacity>
+            </Button>
             
-            <TouchableOpacity style={styles.actionButton} onPress={() => console.log('Add GIF')}>
+            <Button
+              size="$3"
+              borderRadius="$10"
+              backgroundColor="$gray2"
+              pressStyle={{ scale: 0.9 }}
+              animation="bouncy"
+              onPress={() => console.log('Add GIF')}
+            >
               <IconSymbol name="gift.fill" size={20} color="#f472b6" />
-            </TouchableOpacity>
+            </Button>
             
-            <TouchableOpacity style={styles.actionButton} onPress={() => console.log('Add Poll')}>
+            <Button
+              size="$3"
+              borderRadius="$10"
+              backgroundColor="$gray2"
+              pressStyle={{ scale: 0.9 }}
+              animation="bouncy"
+              onPress={() => console.log('Add Poll')}
+            >
               <IconSymbol name="chart.bar.fill" size={20} color="#f472b6" />
-            </TouchableOpacity>
+            </Button>
             
-            <TouchableOpacity style={styles.actionButton} onPress={() => console.log('Add Location')}>
+            <Button
+              size="$3"
+              borderRadius="$10"
+              backgroundColor="$gray2"
+              pressStyle={{ scale: 0.9 }}
+              animation="bouncy"
+              onPress={() => console.log('Add Location')}
+            >
               <IconSymbol name="location.fill" size={20} color="#f472b6" />
-            </TouchableOpacity>
-            
-            <View style={styles.characterCount}>
-              <ThemedText style={[
-                styles.characterCountText,
-                tweetText.length > 260 && styles.characterCountWarning
-              ]}>
-                {280 - tweetText.length}
-              </ThemedText>
-            </View>
-          </View>
-        </ScrollView>
+            </Button>
+          </XStack>
+        </YStack>
       </Animated.View>
     </KeyboardAvoidingView>
   );
@@ -421,5 +501,17 @@ const styles = StyleSheet.create({
   },
   characterCountWarning: {
     color: '#E0245E',
+  },
+  tamaguiTextInput: {
+    fontSize: 18,
+    lineHeight: 24,
+    color: '#14171A',
+    minHeight: 120,
+    maxHeight: 200,
+    textAlignVertical: 'top',
+    padding: 16,
+    paddingRight: 48,
+    backgroundColor: 'transparent',
+    borderRadius: 8,
   },
 });

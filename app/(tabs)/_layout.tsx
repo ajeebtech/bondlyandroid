@@ -15,6 +15,16 @@ export default function TabLayout() {
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
         tabBarButton: HapticTab,
+        tabBarStyle: {
+          height: 80,
+          paddingBottom: 20,
+          paddingTop: 10,
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: '600',
+          marginTop: 4,
+        },
       }}>
       <Tabs.Screen
         name="index"
@@ -22,7 +32,7 @@ export default function TabLayout() {
           title: 'Home',
           tabBarIcon: ({ color, focused }) => (
             <IconSymbol 
-              size={24} 
+              size={28} 
               name={focused ? "house.fill" : "house"} 
               color={focused ? "#f472b6" : color} 
             />
@@ -35,7 +45,7 @@ export default function TabLayout() {
           title: 'Camera',
           tabBarIcon: ({ color, focused }) => (
             <IconSymbol 
-              size={24} 
+              size={28} 
               name={focused ? "camera.fill" : "camera"} 
               color={focused ? "#f472b6" : color} 
             />
@@ -48,7 +58,7 @@ export default function TabLayout() {
           title: 'Media',
           tabBarIcon: ({ color, focused }) => (
             <IconSymbol 
-              size={24} 
+              size={28} 
               name={focused ? "photo.fill" : "photo"} 
               color={focused ? "#f472b6" : color} 
             />
@@ -56,13 +66,13 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="settings"
+        name="settings-tab"
         options={{
-          title: 'Plan a Date',
+          title: 'Settings',
           tabBarIcon: ({ color, focused }) => (
             <IconSymbol 
-              size={24} 
-              name={focused ? "heart.fill" : "heart"} 
+              size={28} 
+              name={focused ? "gearshape.fill" : "gearshape"} 
               color={focused ? "#f472b6" : color} 
             />
           ),
