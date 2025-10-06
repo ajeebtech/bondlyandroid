@@ -95,7 +95,11 @@ export default function SettingsTabScreen() {
           <ThemedText style={styles.headerTitle}>Settings</ThemedText>
         </View>
 
-        <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+        <ScrollView 
+          style={styles.scrollView} 
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: 100 }}
+        >
           {settingsSections.map((section, sectionIndex) => (
             <View key={sectionIndex} style={styles.section}>
               <ThemedText style={styles.sectionTitle}>{section.title}</ThemedText>
@@ -263,6 +267,7 @@ const styles = StyleSheet.create({
   },
   logoutSection: {
     paddingHorizontal: 20,
-    paddingVertical: 30,
+    paddingVertical: 20,
+    paddingBottom: 40,
   },
 });
